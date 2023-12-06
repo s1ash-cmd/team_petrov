@@ -23,7 +23,10 @@
     <ClInclude Include="Mikhailova.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="InsertionSort.h">
+    <ClInclude Include="Gadjiev.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Skryagina.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

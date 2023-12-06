@@ -130,8 +130,9 @@
     <ClCompile Include="team_petrov.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="InsertionSort.h" />
+    <ClInclude Include="Gadjiev.h" />
     <ClInclude Include="Mikhailova.h" />
+    <ClInclude Include="Skryagina.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
