@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClInclude Include="Afanasyeva.h" />
     <ClInclude Include="Gadjiev.h" />
+    <ClInclude Include="Kleymenov.h" />
     <ClInclude Include="Mikhailova.h" />
     <ClInclude Include="Skryagina.h" />
   </ItemGroup>
