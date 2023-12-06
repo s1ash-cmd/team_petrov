@@ -130,6 +130,7 @@
     <ClCompile Include="team_petrov.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Afanasyeva.h" />
     <ClInclude Include="Gadjiev.h" />
     <ClInclude Include="Mikhailova.h" />
     <ClInclude Include="Skryagina.h" />
