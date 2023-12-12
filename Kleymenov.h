@@ -1,52 +1,36 @@
 #pragma once
 #include <iostream>
 #include <list>
+#include <algorithm>  // Для std::move
 using namespace std;
 
 template <typename T>
-list<T> merge(const list<T>& left, const list<T>& right)
-{
-    list<T> result;
+void merge(list<T>& result, list<T>& left, list<T>& right) {
     auto leftIter = left.begin();
     auto rightIter = right.begin();
-    while (leftIter != left.end() && rightIter != right.end())
-    {
-        if (*leftIter < *rightIter)
-        {
-            result.push_back(*leftIter);
-            ++leftIter;
+    while (leftIter != left.end() && rightIter != right.end()) {
+        if (*leftIter < *rightIter) {
+            result.splice(result.end(), left, leftIter++);
         }
         else {
-            result.push_back(*rightIter);
-            ++rightIter;
+            result.splice(result.end(), right, rightIter++);
         }
     }
-    while (leftIter != left.end())
-    {
-        result.push_back(*leftIter);
-        ++leftIter;
-    }
-    while (rightIter != right.end())
-    {
-        result.push_back(*rightIter);
-        ++rightIter;
-    }
-    return result;
+    result.splice(result.end(), left, leftIter, left.end());
+    result.splice(result.end(), right, rightIter, right.end());
 }
 
 template <typename T>
-list<T> mergeSort(const list<T>& lst)
-{
-    if (lst.size() <= 1)
-    {
-        return lst;
+void mergeSort(list<T>& lst) {
+    if (lst.size() <= 1) {
+        return;
     }
     list<T> left, right;
-    auto middle = lst.begin();
-    advance(middle, lst.size() / 2);
-    copy(lst.begin(), middle, back_inserter(left));
-    copy(middle, lst.end(), back_inserter(right));
-    left = mergeSort(left);
-    right = mergeSort(right);
-    return merge(left, right);
+    auto middle = std::next(lst.begin(), lst.size() / 2);
+    left.splice(left.begin(), lst, lst.begin(), middle);
+    right.splice(right.begin(), lst, middle, lst.end());
+    mergeSort(left);
+    mergeSort(right);
+    lst.clear();  // Очищаем оригинальный список
+    merge(lst, left, right);
 }
