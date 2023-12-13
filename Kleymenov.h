@@ -4,8 +4,8 @@
 #include <algorithm>  // Äëÿ std::move
 using namespace std;
 
-template <typename T>
-void merge(list<T>& result, list<T>& left, list<T>& right) {
+template <typename T, template<typename...> class Container>
+void merge(Container<T>& result, Container<T>& left, Container<T>& right) {
     auto leftIter = left.begin();
     auto rightIter = right.begin();
     while (leftIter != left.end() && rightIter != right.end()) {
@@ -20,8 +20,8 @@ void merge(list<T>& result, list<T>& left, list<T>& right) {
     result.splice(result.end(), right, rightIter, right.end());
 }
 
-template <typename T>
-void mergeSort(list<T>& lst) {
+template <typename T, template<typename...> class Container>
+void mergeSort(Container<T>& lst) {
     if (lst.size() <= 1) {
         return;
     }
