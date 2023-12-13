@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <list>
+#include <forward_list>
 #include <string>
 #include <stdexcept>
 #include <cctype>
@@ -20,7 +21,7 @@ using namespace std;
 using namespace std;
 
 template <typename T>
-list<T> readNumbersFromFile(const string& filename) {
+forward_list<T> readNumbersFromFile(const string& filename) {
     ifstream inputFile(filename);
 
     if (!inputFile.is_open()) {
@@ -28,7 +29,7 @@ list<T> readNumbersFromFile(const string& filename) {
         return {};
     }
 
-    list<T> numbers;
+    forward_list<T> numbers;
     string line;
 
     while (getline(inputFile, line)) {
@@ -44,7 +45,7 @@ list<T> readNumbersFromFile(const string& filename) {
                     throw invalid_argument("Invalid data in the file");
                 }
 
-                numbers.push_back(number);
+                numbers.push_front(number);
             }
             catch (const exception& e) {
                 cerr << e.what() << endl;
@@ -59,12 +60,12 @@ list<T> readNumbersFromFile(const string& filename) {
 }
 
 int main() {
-    list<int> selectionsortl = readNumbersFromFile<int>("part_1000.txt");
-    list<int> combsortl = readNumbersFromFile<int>("part_1000.txt");
-    list<int> insertionsortl = readNumbersFromFile<int>("part_1000.txt");
-    list<int> mergesortl = readNumbersFromFile<int>("part_1000.txt");
-    list<int> heapsortl = readNumbersFromFile<int>("part_1000.txt");
-    list<int> bubblesortl = readNumbersFromFile<int>("part_1000.txt");
+    forward_list<int> selectionsortl = readNumbersFromFile<int>("part_1000.txt");
+    forward_list<int> combsortl = readNumbersFromFile<int>("part_1000.txt");
+    forward_list<int> insertionsortl = readNumbersFromFile<int>("part_1000.txt");
+    forward_list<int> mergesortl = readNumbersFromFile<int>("part_1000.txt");
+    forward_list<int> heapsortl = readNumbersFromFile<int>("part_1000.txt");
+    forward_list<int> bubblesortl = readNumbersFromFile<int>("part_1000.txt");
 
 
 
@@ -75,7 +76,7 @@ int main() {
     bubbleSort(bubblesortl);
     auto end1 = chrono::steady_clock::now();
 
-    cout << "bubbleSort: " 
+    cout << "bubbleSort: "
         << chrono::duration_cast<chrono::microseconds>(end1 - start1).count()
         << " mcs" << endl;
 
@@ -121,15 +122,15 @@ int main() {
 
 
 
-   
 
 
 
 
 
 
-   
-   
+
+
+
 
 
     return 0;

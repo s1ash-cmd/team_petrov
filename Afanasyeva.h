@@ -3,20 +3,23 @@
 #define COMBSORT_H
 
 #include <list>
+#include <forward_list>
 #include <iterator>
 
-template<typename T>
-void combsort(std::list<T>& arr) {
+// Шаблонная функция для сортировки комбом
+template<typename T, template <typename...> class Container>
+void combsort(Container<T>& arr) {
     const double shrinkFactor = 1.3; // Коэффициент сжатия
 
-    int size = arr.size();
-    int gap = size;
+    // Получаем размер контейнера
+    auto size = std::distance(arr.begin(), arr.end());
+    auto gap = size;
     bool swapped = true;
 
     do {
         // Обновляем шаг сортировки
         if (gap > 1)
-            gap = static_cast<int>(gap / shrinkFactor);
+            gap = static_cast<decltype(gap)>(gap / shrinkFactor);
 
         if (gap < 1) {
             gap = 1;
