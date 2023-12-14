@@ -11,11 +11,13 @@ void bubbleSort(Conteiner<T>& sortedList) {
         swapped = false; 
         auto prev = sortedList.begin();
         auto current = prev;
+        int count = 0;
         ++current;
         while (current != sortedList.end()) {
             if (*prev > *current) {
                 swap(*prev, *current);
                 swapped = true;
+                count++;
             }
             ++prev;
             ++current;

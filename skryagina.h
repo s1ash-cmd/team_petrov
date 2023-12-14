@@ -14,4 +14,4 @@ void selectionSort(Container<T>& lst) {
         }
         swap(*i, *min);  // меняем местами текущий элемент и минимальный элемент
     }
-}
+}                                             

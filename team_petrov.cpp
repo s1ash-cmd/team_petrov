@@ -18,8 +18,6 @@
 
 using namespace std;
 
-using namespace std;
-
 template <typename T>
 list<T> listfromfile(const string& filename) {
     ifstream inputFile(filename);
@@ -58,7 +56,6 @@ list<T> listfromfile(const string& filename) {
     inputFile.close();
     return numbers;
 }
-
 
 template <typename T>
 forward_list<T> flistfromfile(const string& filename) {
@@ -100,12 +97,12 @@ forward_list<T> flistfromfile(const string& filename) {
 }
 
 int main() {
-    list<int> selectionsortl = listfromfile<int>("part_1000.txt");
-    list<int> combsortl = listfromfile<int>("part_1000.txt");
-    list<int> insertionsortl = listfromfile<int>("part_1000.txt");
-    list<int> mergesortl = listfromfile<int>("part_1000.txt");
-    list<int> heapsortl = listfromfile<int>("part_1000.txt");
-    list<int> bubblesortl = listfromfile<int>("part_1000.txt");
+    list<int> selectionsortl = listfromfile<int>("int_1000.txt");
+    list<int> combsortl = listfromfile<int>("int_1000.txt");
+    list<int> insertionsortl = listfromfile<int>("int_1000.txt");
+    list<int> mergesortl = listfromfile<int>("int_1000.txt");
+    list<int> heapsortl = listfromfile<int>("int_1000.txt");
+    list<int> bubblesortl = listfromfile<int>("int_1000.txt");
 
     auto start1 = chrono::steady_clock::now();
     bubbleSort(bubblesortl);
