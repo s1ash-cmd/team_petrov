@@ -21,7 +21,47 @@ using namespace std;
 using namespace std;
 
 template <typename T>
-forward_list<T> readNumbersFromFile(const string& filename) {
+list<T> listfromfile(const string& filename) {
+    ifstream inputFile(filename);
+
+    if (!inputFile.is_open()) {
+        cerr << "Unable to open the file" << endl;
+        return {};
+    }
+
+    list<T> numbers;
+    string line;
+
+    while (getline(inputFile, line)) {
+        istringstream iss(line);
+        string token;
+
+        while (getline(iss, token, ',')) {
+            try {
+                size_t pos;
+                T number = stoul(token, &pos);
+
+                if (pos != token.size()) {
+                    throw invalid_argument("Invalid data in the file");
+                }
+
+                numbers.push_front(number);
+            }
+            catch (const exception& e) {
+                cerr << e.what() << endl;
+                numbers.clear();
+                return numbers;
+            }
+        }
+    }
+
+    inputFile.close();
+    return numbers;
+}
+
+
+template <typename T>
+forward_list<T> flistfromfile(const string& filename) {
     ifstream inputFile(filename);
 
     if (!inputFile.is_open()) {
@@ -60,17 +100,12 @@ forward_list<T> readNumbersFromFile(const string& filename) {
 }
 
 int main() {
-    forward_list<int> selectionsortl = readNumbersFromFile<int>("part_1000.txt");
-    forward_list<int> combsortl = readNumbersFromFile<int>("part_1000.txt");
-    forward_list<int> insertionsortl = readNumbersFromFile<int>("part_1000.txt");
-    forward_list<int> mergesortl = readNumbersFromFile<int>("part_1000.txt");
-    forward_list<int> heapsortl = readNumbersFromFile<int>("part_1000.txt");
-    forward_list<int> bubblesortl = readNumbersFromFile<int>("part_1000.txt");
-
-
-
-
-    //list<double> doubleNumbers = readNumbersFromFile<double>("your_file.txt");
+    list<int> selectionsortl = listfromfile<int>("part_1000.txt");
+    list<int> combsortl = listfromfile<int>("part_1000.txt");
+    list<int> insertionsortl = listfromfile<int>("part_1000.txt");
+    list<int> mergesortl = listfromfile<int>("part_1000.txt");
+    list<int> heapsortl = listfromfile<int>("part_1000.txt");
+    list<int> bubblesortl = listfromfile<int>("part_1000.txt");
 
     auto start1 = chrono::steady_clock::now();
     bubbleSort(bubblesortl);
@@ -119,19 +154,6 @@ int main() {
     cout << "selectionsort: "
         << chrono::duration_cast<chrono::microseconds>(end6 - start6).count()
         << " mcs" << endl;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     return 0;
 }
